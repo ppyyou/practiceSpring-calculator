@@ -23,13 +23,13 @@ public class CalculatorController {
     @PostMapping("/calculate")
     public String calculate(
             @RequestParam("num1") double num1,
-//            @RequestParam("num2") double num2,
-//            @RequestParam("operation") String operation,
+            @RequestParam("num2") double num2,
+            @RequestParam("operation") String operation,
             Model model) {
-        System.out.println("clicked");
+        System.out.printf("Clicked! num1: %s, num2: %s, op: %s", num1, num2, operation);
 
         try {
-            double result = calculatorService.calculate(num1, 10, "add");
+            double result = calculatorService.calculate(num1, num2, operation);
             model.addAttribute("result", result);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
