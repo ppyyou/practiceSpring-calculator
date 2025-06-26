@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>그냥 Calculator</title>
+</head>
+<body>
+    <h1>hi</h1>
+    <form th:action="@{/calculate}" method="post">
+        <label for="num1">Number 1:</label>
+        <input type="number" step="any" id="num1" name="num1" />
+
+        <button type="submit">Calculate</button>
+    </form>
+</body>
+</html>
