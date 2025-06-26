@@ -3,9 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>그냥 Calculator</title>
+    <style>
+        @font-face {
+            font-family: 'ChosunGs';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'ChosunGs';
+            background-color: #ff69b4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0,0,0,.5);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width:100%;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 3px solid #0c0c0c;
+            font-size: 24px;
+        }
+
+        button {
+            background-color: #f7ff00;
+            color: #db36a4;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .result, .error {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .result {
+            background-color: #e7f3fe;
+            color: #31708f;
+        }
+
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+    </style>
 </head>
 <body>
-    <h1>hi</h1>
+    <h1>원하는 값을 입력하시오.</h1>
     <form th:action="@{/calculate}" method="post">
         <label for="num1">Number 1:</label>
         <input type="number" step="any" id="num1" name="num1" required/>
@@ -14,14 +88,23 @@
         <input type="number" step="any" id="num2" name="num2" required/>
 
         <label for="operation">Operation:</label>
-        <select id="operation" name="operation">
-            <option>Add (+)</option>
-            <option>Subtract (-)</option>
-            <option>Multiply (*)</option>
-            <option>Divide (/)</option>
+        <select id="operation" name="operation" style="font-family: ChosunGs">
+            <option value="add">Add (＋)</option>
+            <option value="subtract">Subtract (－)</option>
+            <option value="multiply">Multiply (×)</option>
+            <option value="divide">Divide (÷)</option>
         </select>
 
-        <button type="submit">Calculate</button>
+        <button type="submit" style="font-family: ChosunGs">Calculate</button>
     </form>
+
+    <div th:if="${result}" class="result">
+        <h2>Result: <span th:text="${result}"></span></h2>
+    </div>
+
+    <div th:if="${errorMessage}" class="errorMessage">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
 </body>
 </html>
